@@ -8,7 +8,21 @@ const prefix = "!"
 
 client.on ("ready", () => {
     console.log(`Estou pronto capitão! Com o total de ${client.users.cache.size} usuários, em ${client.guilds.cache.size} servidores.`);
-    client.user.setPresence( {game: { name: 'Site', type: 1, url: 'bloodshell.dev'} });
+    let statuses = [
+        { game: { name: 'Seja bem-vindo ao BloodShell', type: 0} },
+        { game: { name: '✔️ | bloodshell.dev', type: 1, url: 'bloodshell.dev'} },
+    ];
+
+    let i = 0;
+    setInterval(() => {
+        let status = statuses[i];
+        if(!status){
+            status = statuses[0];
+            i = 0;
+        }
+        client.user.setPresence(status);
+        i++;
+    }, 5000);
 });
 
 // Boas vindas
