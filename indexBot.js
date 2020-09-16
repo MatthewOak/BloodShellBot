@@ -2,104 +2,22 @@ const discord = require('discord.js')
 const client = new discord.Client();
 const config = require("./config.json");
 
-const prefix = "!"
+const prefix = "s!"
 
 // Message bot is on
 
 client.on ("ready", () => {
     console.log(`Estou pronto capitão! Com o total de ${client.users.cache.size} usuários, em ${client.guilds.cache.size} servidores.`);
-    client.user.setActivity("bloodshell.dev")
+    client.user.setActivity("dev by: _mathxx#0101")
 });
 
 // Boas vindas
 
 client.on("guildMemberAdd", member => {
-    const channel = member.guild.channels.cache.find(ch => ch.name === '👋-bem-vindo');
-    if(!channel) return;
-    channel.send(`Bem-vindo, ${member}!:syringe:`);
-    member.send(`Olá ${member}! Seja bem vindo a **Comunidade BloodShell**, não se esqueça de olha as regras no canal <#690762028478103584>. E não se esqueça também de selecionar a linguagem que você mais domina no canal <#692501121763115068>`)
-});
-
-
-client.on('raw', async dados =>{
-    if(dados.t !== "MESSAGE_REACTION_ADD" && dados.t !== "MESSAGE_REACTION_REMOVE") return
-    if(dados.d.message_id !== "692547518013243444") return
-
-    let servidor = client.guilds.cache.get('689254136784355332')
-    let membro = servidor.members.cache.get(dados.d.user_id)
-
-    let cJS = servidor.roles.cache.get('692483591128481812')
-        cPy = servidor.roles.cache.get('692483879092748318')
-        cPh = servidor.roles.cache.get('692484073255600159')
-        cJa = servidor.roles.cache.get('692484210551685230')
-        cRe = servidor.roles.cache.get('692484260006854797')
-        cRn = servidor.roles.cache.get('692484315044642828')
-        cCs = servidor.roles.cache.get('692484443079835698')
-        uXu = servidor.roles.cache.get('692538137997606922')
-        eDv = servidor.roles.cache.get('692484818704924853')
-        dSg = servidor.roles.cache.get('692485079254958133')
-        BasicI = servidor.roles.cache.get('691110571508105217')
-        InterI = servidor.roles.cache.get('692485954396487750')
-        AdvanI = servidor.roles.cache.get('692486269875257415')
-
-
-    if(dados.t === "MESSAGE_REACTION_ADD") {
-        if(dados.d.emoji.name === "📒"){
-            membro.roles.add(cJS)
-        } else if (dados.d.emoji.name === "📔"){
-            membro.roles.add(cPy)
-        } else if (dados.d.emoji.name === "📕"){
-            membro.roles.add(cPh)
-        } else if (dados.d.emoji.name === "📗"){
-            membro.roles.add(cJa)
-        } else if (dados.d.emoji.name === "📘"){
-            membro.roles.add(cRe)
-        } else if (dados.d.emoji.name === "📙"){
-            membro.roles.add(cRn)
-        } else if (dados.d.emoji.name === "📓"){
-            membro.roles.add(cCs)
-        } else if (dados.d.emoji.name === "🎨"){
-            membro.roles.add(uXu)
-        } else if (dados.d.emoji.name === "🎥"){
-            membro.roles.add(eDv)
-        } else if (dados.d.emoji.name === "🖌️"){
-            membro.roles.add(dSg)
-        } else if (dados.d.emoji.name === "🇧"){
-            membro.roles.add(BasicI)
-        } else if (dados.d.emoji.name === "🇦"){
-            membro.roles.add(AdvanI)
-        } else if (dados.d.emoji.name === "🇮"){
-            membro.roles.add(InterI)
-        }
-    }
-
-    if(dados.t === "MESSAGE_REACTION_REMOVE") {
-        if(dados.d.emoji.name === "📒"){
-            membro.roles.remove(cJS)
-        } else if (dados.d.emoji.name === "📔"){
-            membro.roles.remove(cPy)
-        } else if (dados.d.emoji.name === "📕"){
-            membro.roles.remove(cPh)
-        } else if (dados.d.emoji.name === "📗"){
-            membro.roles.remove(cJa)
-        } else if (dados.d.emoji.name === "📘"){
-            membro.roles.remove(cRe)
-        } else if (dados.d.emoji.name === "📙"){
-            membro.roles.remove(cRn)
-        } else if (dados.d.emoji.name === "📓"){
-            membro.roles.remove(cCs)
-        }else if (dados.d.emoji.name === "🎥"){
-            membro.roles.remove(eDv)
-        } else if (dados.d.emoji.name === "🖌️"){
-            membro.roles.remove(dSg)
-        } else if (dados.d.emoji.name === "🇧"){
-            membro.roles.remove(BasicI)
-        } else if (dados.d.emoji.name === "🇦"){
-            membro.roles.remove(AdvanI)
-        } else if (dados.d.emoji.name === "🇮"){
-            membro.roles.remove(InterI)
-        }
-    }
+    //const channel = member.guild.channels.cache.find(ch => ch.name === '👋-bem-vindo');
+    //if(!channel) return;
+    //channel.send(`Bem-vindo, ${member}!:syringe:`);
+    member.send(`Olá ${member}! Seja bem-vindo a loja BloodShell, fique a vontade pra verificar nossos produtos!`)
 });
 
 
@@ -113,6 +31,47 @@ client.on("message", async message => {
     const comando = args.shift().toLowerCase();
 
 
+    // Comando Suporte
+
+    if (comando === "suporte") {
+
+        const support = new discord.MessageEmbed()
+        .setColor('#F61F60')
+        .setTitle('Suporte Supra Tokyo')
+        .setURL('https://discord.gg/B5Y6RQc')
+        .setDescription('Selecione abaixo qual problema você está enfrentando:')
+        .addFields(
+            { name: '1️⃣ - Limbo/Crashs', value: 'Caso seu problema seja com limbos ou crashs.' },
+            { name: '2️⃣ - Denuncia contra Anti-RP', value: 'Caso seu problema seja com Anti-RP de algum player.' },
+            { name: '3️⃣ - Falar com Staff', value: 'Caso deseje conversar com um pessoalmente com um Staff.' },
+            // espaço { name: '\u200B', value: '\u200B' },
+        )
+        .setTimestamp()
+        .setFooter('Obrigado por jogar no Supra Tokyo Roleplay');
+
+        let msg = await message.channel.send(`Olá, ${message.author} sou o Zequinha e estou aqui para te ajudar com seus problemas!` , support);
+        const filter = (reaction, user) => {
+            return reaction.emoji.name === '1️⃣', '2️⃣', '3️⃣' && user.id === message.author.id;
+        };
+
+        const collector = msg.createReactionCollector(filter, { time: 10000 });
+        collector.on('collect', (reaction, user) => {
+            if (reaction.emoji.name === '1️⃣') {
+                message.channel.send(`Calma ai, ${message.author} que estarei te ajudando.`);
+                message.author.send("Observe este artigo que ele vai te ajudar com seu problema ;)!")
+            } else if (reaction.emoji.name === '2️⃣') {
+                message.channel.send(`Olá ${message.author}, peço que por gentileza envie provas como, vídeo ou foto no canal <#741068685929873410>, lá você enviará as provas para nossa Staff, para que possam verificar o ocorrido.`);
+            } else if (reaction.emoji.name === '3️⃣') {
+                message.channel.send(`Peço que entre no canal Aguardando, para que um amigo meu possa lhe ajudar! Valeu xx)`)
+            }
+        })           
+        // reações 
+        await msg.react('1️⃣')
+        await msg.react('2️⃣')
+        await msg.react('3️⃣')
+    } 
+    
+
     // Comando ping
 
     if (comando === "ping") {
@@ -123,8 +82,10 @@ client.on("message", async message => {
     // Comando para apagar mensagens
 
     if(comando === "apagar") {
+        if(!message.member.roles.cache.some(r=>["✰ | C. Discord"].includes(r.name)) )
+            return message.reply("desculpe, mas você não tem permissão para usar este comando, entre em contato com um superior!");
         const deleteCount = parseInt(args[0], 10);
-        if(!deleteCount || deleteCount < 1 || deleteCount > 100)
+        if(!deleteCount || deleteCount < 1 || deleteCount > 300)
             return message.reply("Por favor, forneça um número entre 1 e 100 para o número de mensagens a serem excluídas");
 
         const fetched =  await message.channel.messages.fetch({limit: deleteCount});
@@ -135,13 +96,13 @@ client.on("message", async message => {
     // Command ban
 
     if(comando === "ban") {
-        if(!message.member.roles.cache.some(r=>["⚡️ Owner's"].includes(r.name)) )
-            return message.reply("Desculpe, você não tem permissão para usar isto!");
+        if(!message.member.roles.cache.some(r=>["✰ | C. Discord"].includes(r.name)) )
+            return message.reply("desculpe, mas você não tem permissão para usar este comando, entre em contato com um superior para banir este usuário!");
         let member = message.mentions.members.first();
         if(!member)
             return message.reply("Por favor mencione um membro deste servidor!")
         if(!member.bannable)
-            return message.reply("eu não consigo banir este usuário, ele tem um cargo acima do meu ou eu não tenho permissão para banir?");
+            return message.reply("eu não posso banir este usuário pois ele tem um cargo acima do meu. Entre em contato com um superior pra prosseguir com esta ação!");
         let reason = args.slice(1).join(' ');
         if (!reason) reason = "Nenhuma razão fornecida";
         await member.ban(reason)
@@ -151,7 +112,7 @@ client.on("message", async message => {
 
     // Command invite
     if (comando === "convite") {
-        message.channel.send("https://discord.gg/nmuANZT");
+        message.channel.send("https://discord.gg/B5Y6RQc");
     }
 });
 
